@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quainty - Chat</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <script>
+    function asyncLoader(scriptName)
+    {
+      var doc = document,
+      h = doc.getElementsByTagName('head')[0],
+      s = doc.createElement('script');
+      s.type='text/javascript';
+      s.async= true;
+      s.src = scriptName;
+      h.appendChild(s);
+    }
+
+    window.onload = function() {
+      asyncLoader('/js/utils.js');
+      asyncLoader('/js/login.js');
+      asyncLoader('/js/chat.js');
+    }
+  </script>
+  <link rel="stylesheet" type="text/css" href="/css/main.css" />
+</head>
+
+<body>
+  <div id='chat-box'>
+Welcome to Quainty chat!
+  </div>
+  <form id="chat-form" onsubmit="javascript:sendMessage();return false;">
+    <textarea disabled id="message-box" placeholder="Send message"></textarea>
+    <script>document.getElementById('message-box').addEventListener('keydown', function(event) {
+      if(event.keyCode == 13) {
+        if(!event.shiftKey) {
+          sendMessage();
+          event.preventDefault();
+        }
+      }
+    });
+
+    document.getElementById('message-box').addEventListener('keyup', function(event) {
+      if(event.keyCode == 13) {
+        if(!event.shiftKey) {
+          clearChatInput();
+          event.preventDefault();
+        }
+      }
+    });</script>
+    <input type="submit" id="chat-btn" value="Login" />
+  </form>
+</body>
+
+</html>

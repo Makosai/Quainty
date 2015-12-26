@@ -1,0 +1,159 @@
+@font-face {
+  font-family: OpenSans;
+  src: url(../fonts/OpenSans.ttf);
+}
+
+@font-face {
+  font-family: OpenSans-Thin;
+  src: url(../fonts/OpenSans-Thin.ttf);
+}
+
+body {
+  font-family: OpenSans;
+  font-size: 14px;
+
+  color: #595959;
+  background-color: #fff;
+
+  margin: 0px;
+}
+
+#menu-btn {
+  font-size: 20px;
+}
+
+
+#navbar {
+  font-family: OpenSans-Thin;
+  font-size: 18px;
+
+  width: 100%;
+
+  background-color: #f2f2f2;
+  -moz-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+
+  margin-bottom: 10px;
+}
+
+#navbar a#current {
+  background-color: #54378d;
+}
+
+#navbar a#current:link, #navbar a#current:visited {
+  color: #fff;
+}
+
+#navbar a#current:hover {
+  color: #1a1a1a;
+}
+
+#navbar a#current:active {
+  color: #000;
+}
+
+
+#navbar a {
+  text-decoration: none;
+  padding: 10px 20px 10px 20px;
+
+  display: inline-block;
+}
+
+#navbar a:link, #navbar a:visited {
+  color: #999;
+}
+
+#navbar a:hover {
+  color: #1a1a1a;
+}
+
+#navbar a:active {
+  color: #000;
+}
+
+#menubars {
+  height: 100%;
+  position: absolute;
+}
+
+[id^='menubar_'] {
+  font-family: OpenSans-Thin;
+  font-size: 18px;
+
+  height: 100%;
+  width: 292px;
+
+  left: -300px;
+
+  background-color: #f2f2f2;
+  -moz-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.15);
+
+  margin: -9px 0px 0px 0px;
+
+  position:fixed;
+
+  -webkit-transition: left .15s;
+  transition: left .15s ease-in-out;
+}
+
+[id^='menubar_'] ul {
+  color: #595959;
+
+  font-weight: bold;
+  font-size: 16px;
+
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+[id^='menubar_'] ul li {
+  padding: 15px 5px 15px 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  margin: 0px 7px 0px 10px;
+
+  -webkit-transition: padding .15s, margin .15s;
+  transition: padding .15s ease-in-out, margin .15s ease-in-out;
+}
+
+[id^='menubar_'] ul li:hover {
+  color: #fff;
+  background-color: #54378d;
+
+  padding: 15px 12px 15px 20px;
+  margin: 0px;
+}
+
+#chat-box {
+  padding: 0px 10px 10px 10px;
+}
+
+#message-box {
+  padding: 0px 10px 10px 10px;
+  width: 95%;
+  margin: 0px 6px 0px 0px;
+  display: inline-block;
+  float: right;
+  resize: none;
+}
+
+textarea[disabled] {
+  background-color: #ddd;
+}
+
+#chat-btn {
+  background-color: #54378d;
+  color: #fff;
+
+  font-weight: bold;
+
+  margin: 5px 6px 0px 0px;
+  padding: 7px 35px 7px 35px;
+  display: inline-block;
+  border: 0;
+  float: right;
+}
