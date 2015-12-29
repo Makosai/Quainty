@@ -1,3 +1,11 @@
+/*
+chat.js -
+  Handles basic chatting functions. Mainly sending and receiving. Receiving calls
+  are handled in login.js where the WebSocket is initialized. However, chat.js owns
+  the actual function.
+*/
+
+// Send a privmsg() to all the channels that the user has selected to chat to
 function sendMessage() {
   if (!loggedIn) {
     login();
@@ -9,12 +17,13 @@ function sendMessage() {
 
   if (messagebox.value.length > 0 && messagebox.value.match(".*\\w.*")) {
     output(config.name + ': ' + messagebox.value);
-    chat(messagebox.value, new Array(config.chan));
+    privmsg(messagebox.value, config.sendChans);
     clearChatInput();
   }
 }
 
-function chat(msg, chans) {
+// Send raw PRIVMSG to server with msg
+function privmsg(msg, chans) {
   chans.forEach(function(chan) {
     raw('PRIVMSG ' + chan + ' :' + msg);
   });

@@ -1,8 +1,15 @@
+/*
+main.js -
+  Loads documents for everything in the navbar. This handles the one-page design's
+  content.
+*/
+
 var navitems = ['Home', 'Chat', 'Bot'];
 
 var navbar = document.getElementById('navbar');
 var page = document.getElementById('page');
 
+// Set up the menu-btn
 navbar.innerHTML +=
   '<a href="#" onclick="menuClick();return false;" id="menu-btn">&#9776;</a>';
 
@@ -11,6 +18,7 @@ var menubars = document.getElementById('menubars');
 
 var val = 0;
 
+// Each navbar item (Home, Chat, etc)
 navitems.forEach(function(item) {
   navbar.innerHTML +=
     '<a href="#" title="' + item.toLowerCase() +
@@ -18,24 +26,22 @@ navitems.forEach(function(item) {
     item +
     ' </a>';
   page.innerHTML += '<div id="page_' + item.toLowerCase() +
-    '" style="display:none;">This is the ' +
-    item + ' content.</div>';
+    '" style="display:none;"></div>';
 
   menubars.innerHTML += '<div id="menubar_' + item.toLowerCase() +
     '" style="display:none;"><ul><li>test' + ++val + '</li><li>test' + ++
     val + '</li></ul></div>';
 
   var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open('GET', '../src/' + item.toLowerCase() + '.html', true);
+  xmlhttp.open('GET', '/src/' + item.toLowerCase() + '.html', true);
 
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState === 4) { // DONE
       if (xmlhttp.status === 200) { // OK
         var pageDoc = document.getElementById('page_' + item.toLowerCase());
-        pageDoc.innerHTML =
-          getContent(xmlhttp
-            .responseText);
+        pageDoc.innerHTML = getContent(xmlhttp.responseText);
 
+        // eval() the new script
         var scripts = pageDoc.getElementsByTagName('script');
         if (scripts.length > 0) {
           for (var i = 0; i < scripts.length; i++) {
@@ -56,6 +62,7 @@ navigate(navbar.getElementsByTagName('a')[1]);
 
 var currentTab, currentPage;
 
+// Switch between navbar items
 function navigate(item) {
   if (currentTab) {
     currentTab.id = '';

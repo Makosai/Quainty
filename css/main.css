@@ -1,3 +1,4 @@
+/* Fonts */
 @font-face {
   font-family: OpenSans;
   src: url(../fonts/OpenSans.ttf);
@@ -8,6 +9,9 @@
   src: url(../fonts/OpenSans-Thin.ttf);
 }
 
+
+
+/* Body */
 body {
   font-family: OpenSans;
   font-size: 14px;
@@ -18,11 +22,20 @@ body {
   margin: 0px;
 }
 
+
+
+/*
+**
+** Menu Bar Items
+**
+*/
+/* Menu Button */
 #menu-btn {
   font-size: 20px;
 }
 
 
+/* Navbar */
 #navbar {
   font-family: OpenSans-Thin;
   font-size: 18px;
@@ -37,6 +50,7 @@ body {
   margin-bottom: 10px;
 }
 
+/* Navbar Selected */
 #navbar a#current {
   background-color: #54378d;
 }
@@ -53,7 +67,7 @@ body {
   color: #000;
 }
 
-
+/* Navbar Unselected */
 #navbar a {
   text-decoration: none;
   padding: 10px 20px 10px 20px;
@@ -73,6 +87,8 @@ body {
   color: #000;
 }
 
+
+/* Side Panel Items */
 #menubars {
   height: 100%;
   position: absolute;
@@ -128,6 +144,13 @@ body {
   margin: 0px;
 }
 
+
+
+/*
+**
+** Fonts Begin
+**
+*/
 #chat-box {
   padding: 0px 10px 10px 10px;
 }
