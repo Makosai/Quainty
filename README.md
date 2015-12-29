@@ -25,3 +25,8 @@ Current features
 3.	**Notifications**
 
 	-	Coming soon!
+
+How can I contribute?
+---------------------
+
+This project is completely open-sourced. The only part of this project that would not be visible to the public is the database connections and structure. Simply make a pull request and start working! The end-goal of this project is listed in [What it is (or will be)](#what-it-is-or-will-be) so you know what to work towards.
