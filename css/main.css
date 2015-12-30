@@ -153,14 +153,16 @@ body {
 */
 #chat-box {
   padding: 0px 10px 10px 10px;
+  height: 189px;
+  overflow: auto;
 }
 
 #message-box {
   padding: 0px 10px 10px 10px;
-  width: 95%;
-  margin: 0px 6px 0px 0px;
+  width: calc(100% - 35px);
+  clear: both;
+  margin: 0px 6px 0px 6px;
   display: inline-block;
-  float: right;
   resize: none;
 }
 
