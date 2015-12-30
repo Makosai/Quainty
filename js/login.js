@@ -81,7 +81,7 @@ function connect() {
 
     ws = new WebSocket('ws://' + config.addr);
 
-    output('WebSocket initialized.');
+    output('WebSocket initializing...');
 
     ws.onopen = function() {
       // WebSocket is connected
@@ -136,5 +136,18 @@ function output(str) {
     chatbox = document.getElementById('chat-box');
   }
 
+  var prevTop = chatbox.scrollHeight - chatbox.scrollTop;
+  var prevHeight = chatbox.scrollHeight;
+  var factorTop = (chatbox.scrollHeight - prevHeight); // keeps the scrolling still if they are not at the bottom
+
+  if (chatbox.scrollTop === chatbox.scrollHeight - chatbox.offsetHeight) {
+    prevTop -= prevTop;
+  } else {
+    factorTop = 0;
+  }
+
   chatbox.innerHTML += ('<div class="message">' + str + '</div>');
+
+  chatbox.scrollTop = chatbox.scrollHeight - prevTop - (chatbox.scrollHeight -
+    prevHeight);
 }
