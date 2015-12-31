@@ -34,7 +34,7 @@ imgOff:
 var menuitems = {
   'Home': [{
     type: 'bar',
-    text: 'test1',
+    text: 'test1'
   }, {
     type: 'bar',
     text: 'test2'
