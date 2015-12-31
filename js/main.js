@@ -5,20 +5,58 @@ main.js -
 */
 
 var navitems = ['Home', 'Chat', 'Bot'];
+
+/*
+Usage:
+  'navitem': [{
+    type: 'type here' // REQUIRED
+    text: '' // OPTIONAL
+    width: px // OPTIONAL (coming soon)
+    height: px // OPTIONAL (coming soon)
+    img: 'link or path' // OPTIONAL (coming soon)
+    imgPos: '' // OPTIONAL (coming soon)
+    imgOff: [0,0] // OPTIONAL (coming soon)
+  }]
+
+Types:
+  bar
+  header
+  img (coming soon)
+
+imgPos:
+  left
+  center
+  right
+
+imgOff:
+  [x offset, y offset]
+*/
 var menuitems = {
   'Home': [{
     type: 'bar',
-    text: 'test1'
+    text: 'test1',
   }, {
     type: 'bar',
     text: 'test2'
   }],
   'Chat': [{
+    type: 'header',
+    text: 'header1'
+  }, {
     type: 'bar',
     text: 'test3'
   }, {
     type: 'bar',
     text: 'test4'
+  }, {
+    type: 'header',
+    text: 'header2'
+  }, {
+    type: 'bar',
+    text: 'test3.2'
+  }, {
+    type: 'bar',
+    text: 'test4.2'
   }],
   'Bot': [{
     type: 'bar',
@@ -65,9 +103,15 @@ navitems.forEach(function(item) {
           curMenubar.appendChild(barContainer);
         }
         var li = document.createElement('li');
-        barContainer.appendChild(li);
         li.innerHTML = barItem.text;
+        barContainer.appendChild(li);
         break;
+      case 'header':
+        barContainer = null;
+        var div = document.createElement('div');
+        div.setAttribute('class', barItem.type);
+        div.innerHTML = barItem.text;
+        curMenubar.appendChild(div);
     }
   });
 

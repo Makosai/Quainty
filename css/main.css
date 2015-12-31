@@ -146,6 +146,20 @@ body {
   margin: 0px;
 }
 
+[id^='menubar_'] .header {
+  color: #333;
+  background-color: #ccc;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: OpenSans;
+
+  padding: 0px 5px 0px 5px;
+  margin-top: 25px;
+
+  -moz-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
 
 
 /*
