@@ -5,6 +5,29 @@ main.js -
 */
 
 var navitems = ['Home', 'Chat', 'Bot'];
+var menuitems = {
+  'Home': [{
+    type: 'bar',
+    text: 'test1'
+  }, {
+    type: 'bar',
+    text: 'test2'
+  }],
+  'Chat': [{
+    type: 'bar',
+    text: 'test3'
+  }, {
+    type: 'bar',
+    text: 'test4'
+  }],
+  'Bot': [{
+    type: 'bar',
+    text: 'test5'
+  }, {
+    type: 'bar',
+    text: 'test6'
+  }]
+};
 
 var navbar = document.getElementById('navbar');
 var page = document.getElementById('page');
@@ -29,9 +52,26 @@ navitems.forEach(function(item) {
     '" style="display:none;"></div>';
 
   menubars.innerHTML += '<div id="menubar_' + item.toLowerCase() +
-    '" style="display:none;"><ul><li>test' + ++val + '</li><li>test' + ++
-    val + '</li></ul></div>';
+    '" style="display:none;"></div>';
 
+  // Menu Bars Content
+  var curMenubar = document.getElementById('menubar_' + item.toLowerCase());
+  var barContainer;
+  menuitems[item].forEach(function(barItem) {
+    switch (barItem.type) {
+      case 'bar':
+        if (!barContainer) {
+          barContainer = document.createElement('ul');
+          curMenubar.appendChild(barContainer);
+        }
+        var li = document.createElement('li');
+        barContainer.appendChild(li);
+        li.innerHTML = barItem.text;
+        break;
+    }
+  });
+
+  // Load other pages
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.open('GET', '/src/' + item.toLowerCase() + '.html', true);
 
@@ -41,7 +81,7 @@ navitems.forEach(function(item) {
         var pageDoc = document.getElementById('page_' + item.toLowerCase());
         pageDoc.innerHTML = getContent(xmlhttp.responseText);
 
-        // eval() the new script
+        // eval() the new scripts
         var scripts = pageDoc.getElementsByTagName('script');
         if (scripts.length > 0) {
           for (var i = 0; i < scripts.length; i++) {
