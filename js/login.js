@@ -22,6 +22,7 @@ var loggedIn = false;
 var chatbox = document.getElementById('chat-box'); // Output
 var messagebox = document.getElementById('message-box'); // Input
 var chatbtn = document.getElementById('chat-btn'); // Submit
+var chatstatus = document.getElementById('chat-status'); // Chat status text
 
 // Used to make sure variables are loaded in the event that this scripts loads
 // before the page does (Twitch API causes this).
@@ -34,6 +35,9 @@ function reinitVars() {
 
   if (!chatbtn)
     chatbtn = document.getElementById('chat-btn');
+
+  if (!chatstatus)
+    chatstatus = document.getElementById('chat-status');
 }
 
 // Prepare for authentication and the WebSocket
@@ -94,6 +98,11 @@ function connect() {
       loggedIn = true;
 
       chatbtn.value = "Chat";
+      chatstatus.innerHTML =
+        '<div class="name">' + config.name +
+        '<a href class="logout" onclick="javascript:logout();return false;">[Logout]</a></div>';
+      chatstatus.style.background =
+        'radial-gradient(circle at 5px 5px, #58FA58, #38610B)';
       messagebox.disabled = false;
     };
 
@@ -112,10 +121,25 @@ function connect() {
     };
   } catch (err) {
     debugMe('Failed to initialize WebSocket: ' + err.message);
-    loggedIn = false;
 
-    chatbtn.value = "Login";
-    messagebox.disabled = true;
+    logout();
+  }
+}
+
+function logout() {
+  if (loggedIn) {
+    Twitch.logout(function(error) {
+      // the user is now logged out
+      ws.close();
+
+      loggedIn = false;
+
+      chatbtn.value = "Login";
+      chatstatus.innerHTML = '<div class="name">Not signed in</div>';
+      chatstatus.style.background =
+        'radial-gradient(circle at 5px 5px, #555, #000)';
+      messagebox.disabled = true;
+    });
   }
 }
 

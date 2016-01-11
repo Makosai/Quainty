@@ -41,7 +41,7 @@ var menuitems = {
   }],
   'Chat': [{
     type: 'header',
-    text: 'header1'
+    text: 'Single Channels'
   }, {
     type: 'bar',
     text: 'test3'
@@ -50,7 +50,7 @@ var menuitems = {
     text: 'test4'
   }, {
     type: 'header',
-    text: 'header2'
+    text: 'Merged Channels'
   }, {
     type: 'bar',
     text: 'test3.2'
