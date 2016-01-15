@@ -110,7 +110,7 @@ function connect() {
       if (e.data.match(/^PING (\S*)/i)) {
         ws.send('PONG ' + RegExp.$1 + '\n');
       } else {
-        output(e.data);
+        handleMsg(e.data);
       }
     };
 
@@ -140,6 +140,60 @@ function logout() {
         'radial-gradient(circle at 5px 5px, #555, #000)';
       messagebox.disabled = true;
     });
+  }
+}
+
+function handleMsg(data) {
+  debugMe(data);
+  var _nick, _type, _channel, _message = "",
+    ex = [];
+
+  ex = data.split(' ', 5);
+
+  // split the message and the other data
+  var split1 = data.split(':');
+  if (split1.length > 1) {
+    // splitting nick, type, chan, and message
+    var split2 = split1[1].split(' ');
+
+    //the nick section consists of various things - we only need the nick itself
+    _nick = split2[0]
+    _nick = _nick.split('!')[0];
+
+    // type = PRIVMSG for normal messages and some other types will be added later
+    _type = split2[1];
+
+    // the channel the data was sent to
+    _channel = split2[2];
+
+    // get the message
+    if (split1.length > 2) {
+      for (var i = 2; i < split1.length; i++) {
+        _message += split1[i] + ' ';
+      }
+    }
+
+    if (_type == "353") {
+      // split the message
+      split3 = split1[2].split(' ');
+      for (var i = 0; i < split3.length; i++) {
+        // add multiple users
+      }
+    } else {
+      if (_channel.includes('#')) {
+        switch (_type) {
+          case 'JOIN':
+            // add the user
+            break;
+          case 'PART':
+            // rem the user
+            break;
+          case 'PRIVMSG':
+            output(_nick + ': ' + _message) // replace with a new function that loads the user's color from a list
+            break;
+        }
+      }
+    }
   }
 }
 
