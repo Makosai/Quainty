@@ -7,7 +7,7 @@ auth.js -
 
 var oauthConfig = {
   clientID: 'de84rjd2hrql8kw0q1d0r7mw51moyid',
-  redirectURI: 'http://108.33.115.197:3000', //For testing on a private server. Feel free to change.
+  redirectURI: 'http://127.0.0.1:3000', //For testing on a private server. Feel free to change.
   scope: ['chat_login', 'user_read']
 }
 

@@ -8,7 +8,7 @@ var config = {
   nick: '',
   name: '', // display name
   pass: '',
-  addr: 'irc.twitch.tv',
+  addr: 'irc-ws.chat.twitch.tv',
   port: '80',
   chans: ['#quaintshanty'],
   sendChans: null // channels to send chat to.
@@ -83,7 +83,7 @@ function connect() {
   try {
     debugMe('Connecting to ' + config.addr + ' on port ' + config.port + '...');
 
-    ws = new WebSocket('ws://' + config.addr);
+    ws = new WebSocket('wss://' + config.addr);
 
     output('WebSocket initializing...');
 
