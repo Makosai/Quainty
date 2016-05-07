@@ -16,7 +16,8 @@ function sendMessage() {
   }
 
   if (messagebox.value.length > 0 && messagebox.value.match(".*\\w.*")) {
-    output(config.name + ': ' + messagebox.value);
+    output('<b><font color="blue">' + config.name + '</font></b>: ' +
+      messagebox.value);
     privmsg(messagebox.value, config.sendChans);
     clearChatInput();
   }

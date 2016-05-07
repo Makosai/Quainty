@@ -189,7 +189,8 @@ function handleMsg(data) {
             // rem the user
             break;
           case 'PRIVMSG':
-            output(_nick + ': ' + _message) // replace with a new function that loads the user's color from a list
+            output('<font color="blue"><b>' + _nick + '</font></b>: ' +
+              _message); // replace with a new function that loads the user's color from a list
             break;
         }
       }
