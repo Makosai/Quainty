@@ -21,6 +21,9 @@ Usage:
 Types:
   bar
   header
+  button
+    Valid extra variables:
+      onClick: 'javascript:function();'
   img (coming soon)
 
 imgPos:
@@ -46,8 +49,9 @@ var menuitems = {
     type: 'bar',
     text: 'test3'
   }, {
-    type: 'bar',
-    text: 'test4'
+    type: 'button',
+    text: 'New',
+    onClick: 'javascript:newChannel(this);'
   }, {
     type: 'header',
     text: 'Merged Channels'
@@ -103,15 +107,30 @@ navitems.forEach(function(item) {
           curMenubar.appendChild(barContainer);
         }
         var li = document.createElement('li');
+        li.setAttribute('class', barItem.type);
         li.innerHTML = barItem.text;
         barContainer.appendChild(li);
         break;
+
       case 'header':
         barContainer = null;
         var div = document.createElement('div');
         div.setAttribute('class', barItem.type);
         div.innerHTML = barItem.text;
         curMenubar.appendChild(div);
+        break;
+
+      case 'button':
+        if (!barContainer) {
+          barContainer = document.createElement('ul');
+          curMenubar.appendChild(barContainer);
+        }
+        var li = document.createElement('li');
+        li.setAttribute('class', barItem.type);
+        li.setAttribute('onClick', barItem.onClick);
+        li.innerHTML = barItem.text;
+        barContainer.appendChild(li);
+        break;
     }
   });
 

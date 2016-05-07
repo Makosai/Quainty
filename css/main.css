@@ -146,6 +146,10 @@ body {
   margin: 0px;
 }
 
+[id^='menubar_'] .bar {
+
+}
+
 [id^='menubar_'] .header {
   color: #333;
   background-color: #ccc;
@@ -159,6 +163,12 @@ body {
   -moz-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+[id^='menubar_'] .button {
+  text-align: center;
+  font-weight: bolder;
+  text-transform: uppercase;
 }
 
 
