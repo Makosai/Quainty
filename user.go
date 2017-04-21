@@ -7,7 +7,7 @@ user.go -
 */
 
 package main
-
+/*
 import (
 	"io"
 	"net/http"
@@ -42,4 +42,4 @@ func (*myHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	io.WriteString(w, "My server: "+r.URL.String())
-}
+}*/
