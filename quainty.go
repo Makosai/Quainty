@@ -6,8 +6,11 @@ quainty.go -
 package main
 
 import (
+  "fmt"
 )
 
 func main() {
-  RunServer()
+  fmt.Println("test1")
+  go RunServer()
+  fmt.Println("test2")
 }
