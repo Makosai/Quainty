@@ -9,7 +9,13 @@ function build() {
   #        exit
   #        ;;
   #esac
-  go build
+  case "$1" in
+    win-
+
+    \?) go build
+        exit 1
+        ;;
+  esac
 }
 
 function run() {
