@@ -100,23 +100,25 @@ navitems.forEach(function(item) {
   const curMenubar = document.getElementById('menubar_' + item.toLowerCase());
   let barContainer;
   menuitems[item].forEach(function(barItem) {
+    let elem;
+
     switch (barItem.type) {
       case 'bar':
         if (!barContainer) {
           barContainer = document.createElement('ul');
           curMenubar.appendChild(barContainer);
         }
-        const li = document.createElement('li');
-        li.setAttribute('class', barItem.type);
-        li.innerHTML = barItem.text;
+        elem = document.createElement('li');
+        elem.setAttribute('class', barItem.type);
+        elem.innerHTML = barItem.text;
         barContainer.appendChild(li);
         break;
 
       case 'header':
         barContainer = null;
-        const div = document.createElement('div');
-        div.setAttribute('class', barItem.type);
-        div.innerHTML = barItem.text;
+        elem = document.createElement('div');
+        elem.setAttribute('class', barItem.type);
+        elem.innerHTML = barItem.text;
         curMenubar.appendChild(div);
         break;
 
@@ -125,10 +127,10 @@ navitems.forEach(function(item) {
           barContainer = document.createElement('ul');
           curMenubar.appendChild(barContainer);
         }
-        const li = document.createElement('li');
-        li.setAttribute('class', barItem.type);
-        li.setAttribute('onClick', barItem.onClick);
-        li.innerHTML = barItem.text;
+        elem = document.createElement('li');
+        elem.setAttribute('class', barItem.type);
+        elem.setAttribute('onClick', barItem.onClick);
+        elem.innerHTML = barItem.text;
         barContainer.appendChild(li);
         break;
     }
@@ -147,13 +149,13 @@ navitems.forEach(function(item) {
         // eval() the new scripts
         const scripts = pageDoc.getElementsByTagName('script');
         if (scripts.length > 0) {
-          for (let i = 0; i < scripts.length; i++) {
-            eval(scripts[i].innerHTML);
+          for (const element of scripts) {
+            eval(element.innerHTML);
           }
         }
       } else {
         document.getElementById('page_' + item.toLowerCase()).innerHTML =
-          'Sorry, an error occured.';
+          'Sorry, an error occurred.';
       }
     }
   };

@@ -42,7 +42,7 @@ function reinitVars() {
 
 // Prepare for authentication and the WebSocket
 function login() {
-  if (!'WebSocket' in window) {
+  if (!('WebSocket' in window)) {
     output('Error: WebSocket is not supported by your browser.');
     return;
   }
@@ -108,7 +108,8 @@ function connect() {
 
     ws.onmessage = function(e) {
       if (e.data.match(/^PING (\S*)/i)) {
-        ws.send('PONG ' + RegExp.$1 + '\n');
+        const pingValue = e.data.match(/^PING (\S*)/i)[1];
+        ws.send('PONG ' + pingValue + '\n');
       } else {
         handleMsg(e.data);
       }
@@ -150,6 +151,8 @@ function handleMsg(data) {
 
   ex = data.split(' ', 5);
 
+  console.log(ex);
+
   // split the message and the other data
   let split1 = data.split(':');
   if (split1.length > 1) {
@@ -175,12 +178,12 @@ function handleMsg(data) {
 
     if (_type == "353") {
       // split the message
-      split3 = split1[2].split(' ');
-      for (let i = 0; i < split3.length; i++) {
+      let split3 = split1[2].split(' ');
+      for (const element of split3) {
+        console.log(element);
         // add multiple users
       }
-    } else {
-      if (_channel.includes('#')) {
+    } else if (_channel.includes('#')) {
         switch (_type) {
           case 'JOIN':
             // add the user
@@ -194,7 +197,6 @@ function handleMsg(data) {
             break;
         }
       }
-    }
   }
 }
 
@@ -217,14 +219,14 @@ function output(str) {
 
   let prevTop = chatbox.scrollHeight - chatbox.scrollTop;
   const prevHeight = chatbox.scrollHeight;
-  const factorTop = (chatbox.scrollHeight - prevHeight); // keeps the scrolling still if they are not at the bottom
+  let factorTop = (chatbox.scrollHeight - prevHeight); // keeps the scrolling still if they are not at the bottom
 
   if (chatbox.scrollTop === chatbox.scrollHeight - chatbox.offsetHeight) {
     prevTop -= prevTop;
   } else {
     factorTop = 0;
   }
-
+  console.log(factorTop);
   chatbox.innerHTML += ('<div class="message">' + str + '</div>');
 
   chatbox.scrollTop = chatbox.scrollHeight - prevTop - (chatbox.scrollHeight -

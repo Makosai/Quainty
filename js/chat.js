@@ -6,19 +6,21 @@ chat.js -
 */
 
 // Send a privmsg() to all the channels that the user has selected to chat to
+
+let _messagebox = messagebox;
 function sendMessage() {
   if (!loggedIn) {
     login();
     return;
   }
   if (!messagebox) {
-    messagebox = document.getElementById('message-box');
+    _messagebox = document.getElementById('message-box');
   }
 
-  if (messagebox.value.length > 0 && messagebox.value.match(".*\\w.*")) {
+  if (_messagebox.value.length > 0 && _messagebox.value.match(".*\\w.*")) {
     output('<b><font color="blue">' + config.name + '</font></b>: ' +
-      messagebox.value);
-    privmsg(messagebox.value, config.sendChans);
+      _messagebox.value);
+    privmsg(_messagebox.value, config.sendChans);
     clearChatInput();
   }
 }
@@ -31,9 +33,9 @@ function privmsg(msg, chans) {
 }
 
 function clearChatInput() {
-  if (!messagebox) {
-    messagebox = document.getElementById('message-box');
+  if (!_messagebox) {
+    _messagebox = document.getElementById('message-box');
   }
 
-  messagebox.value = "";
+  _messagebox.value = "";
 }
