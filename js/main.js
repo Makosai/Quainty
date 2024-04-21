@@ -4,7 +4,7 @@ main.js -
   content.
 */
 
-var navitems = ['Home', 'Chat', 'Bot'];
+const navitems = ['Home', 'Chat', 'Bot'];
 
 /*
 Usage:
@@ -34,7 +34,7 @@ imgPos:
 imgOff:
   [x offset, y offset]
 */
-var menuitems = {
+const menuitems = {
   'Home': [{
     type: 'bar',
     text: 'test1'
@@ -71,17 +71,17 @@ var menuitems = {
   }]
 };
 
-var navbar = document.getElementById('navbar');
-var page = document.getElementById('page');
+const navbar = document.getElementById('navbar');
+const page = document.getElementById('page');
 
 // Set up the menu-btn
 navbar.innerHTML +=
   '<a href="#" onclick="menuClick();return false;" id="menu-btn">&#9776;</a>';
 
-var menu = document.getElementById('menu-btn');
-var menubars = document.getElementById('menubars');
+const menu = document.getElementById('menu-btn');
+const menubars = document.getElementById('menubars');
 
-var val = 0;
+let val = 0;
 
 // Each navbar item (Home, Chat, etc)
 navitems.forEach(function(item) {
@@ -97,8 +97,8 @@ navitems.forEach(function(item) {
     '" style="display:none;"></div>';
 
   // Menu Bars Content
-  var curMenubar = document.getElementById('menubar_' + item.toLowerCase());
-  var barContainer;
+  const curMenubar = document.getElementById('menubar_' + item.toLowerCase());
+  let barContainer;
   menuitems[item].forEach(function(barItem) {
     switch (barItem.type) {
       case 'bar':
@@ -106,7 +106,7 @@ navitems.forEach(function(item) {
           barContainer = document.createElement('ul');
           curMenubar.appendChild(barContainer);
         }
-        var li = document.createElement('li');
+        const li = document.createElement('li');
         li.setAttribute('class', barItem.type);
         li.innerHTML = barItem.text;
         barContainer.appendChild(li);
@@ -114,7 +114,7 @@ navitems.forEach(function(item) {
 
       case 'header':
         barContainer = null;
-        var div = document.createElement('div');
+        const div = document.createElement('div');
         div.setAttribute('class', barItem.type);
         div.innerHTML = barItem.text;
         curMenubar.appendChild(div);
@@ -125,7 +125,7 @@ navitems.forEach(function(item) {
           barContainer = document.createElement('ul');
           curMenubar.appendChild(barContainer);
         }
-        var li = document.createElement('li');
+        const li = document.createElement('li');
         li.setAttribute('class', barItem.type);
         li.setAttribute('onClick', barItem.onClick);
         li.innerHTML = barItem.text;
@@ -135,19 +135,19 @@ navitems.forEach(function(item) {
   });
 
   // Load other pages
-  var xmlhttp = new XMLHttpRequest();
+  const xmlhttp = new XMLHttpRequest();
   xmlhttp.open('GET', '/src/' + item.toLowerCase() + '.html', true);
 
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState === 4) { // DONE
       if (xmlhttp.status === 200) { // OK
-        var pageDoc = document.getElementById('page_' + item.toLowerCase());
+        const pageDoc = document.getElementById('page_' + item.toLowerCase());
         pageDoc.innerHTML = getContent(xmlhttp.responseText);
 
         // eval() the new scripts
-        var scripts = pageDoc.getElementsByTagName('script');
+        const scripts = pageDoc.getElementsByTagName('script');
         if (scripts.length > 0) {
-          for (var i = 0; i < scripts.length; i++) {
+          for (let i = 0; i < scripts.length; i++) {
             eval(scripts[i].innerHTML);
           }
         }
@@ -163,7 +163,7 @@ navitems.forEach(function(item) {
 
 navigate(navbar.getElementsByTagName('a')[1]);
 
-var currentTab, currentPage;
+let currentTab, currentPage;
 
 // Switch between navbar items
 function navigate(item) {
@@ -186,8 +186,8 @@ function navigate(item) {
   currentMenubar = menubars.querySelector('#menubar_' + currentTab.title);
 }
 
-var currentMenubar;
-var menuOpened = false;
+let currentMenubar;
+let menuOpened = false;
 
 function closeMenubar() {
   if (currentMenubar) {

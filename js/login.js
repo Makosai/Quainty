@@ -4,7 +4,7 @@ login.js -
   the user and handles the sending and receiving of raw data.
 */
 
-var config = {
+let config = {
   nick: '',
   name: '', // display name
   pass: '',
@@ -15,14 +15,14 @@ var config = {
 };
 config.sendChans = config.chans;
 
-var ws = null; // WebSocket
+let ws = null; // WebSocket
 
-var loggedIn = false;
+let loggedIn = false;
 
-var chatbox = document.getElementById('chat-box'); // Output
-var messagebox = document.getElementById('message-box'); // Input
-var chatbtn = document.getElementById('chat-btn'); // Submit
-var chatstatus = document.getElementById('chat-status'); // Chat status text
+let chatbox = document.getElementById('chat-box'); // Output
+let messagebox = document.getElementById('message-box'); // Input
+let chatbtn = document.getElementById('chat-btn'); // Submit
+let chatstatus = document.getElementById('chat-status'); // Chat status text
 
 // Used to make sure variables are loaded in the event that this scripts loads
 // before the page does (Twitch API causes this).
@@ -145,16 +145,16 @@ function logout() {
 
 function handleMsg(data) {
   debugMe(data);
-  var _nick, _type, _channel, _message = "",
+  let _nick, _type, _channel, _message = "",
     ex = [];
 
   ex = data.split(' ', 5);
 
   // split the message and the other data
-  var split1 = data.split(':');
+  let split1 = data.split(':');
   if (split1.length > 1) {
     // splitting nick, type, chan, and message
-    var split2 = split1[1].split(' ');
+    let split2 = split1[1].split(' ');
 
     //the nick section consists of various things - we only need the nick itself
     _nick = split2[0]
@@ -168,7 +168,7 @@ function handleMsg(data) {
 
     // get the message
     if (split1.length > 2) {
-      for (var i = 2; i < split1.length; i++) {
+      for (let i = 2; i < split1.length; i++) {
         _message += split1[i] + ' ';
       }
     }
@@ -176,7 +176,7 @@ function handleMsg(data) {
     if (_type == "353") {
       // split the message
       split3 = split1[2].split(' ');
-      for (var i = 0; i < split3.length; i++) {
+      for (let i = 0; i < split3.length; i++) {
         // add multiple users
       }
     } else {
@@ -215,9 +215,9 @@ function output(str) {
     chatbox = document.getElementById('chat-box');
   }
 
-  var prevTop = chatbox.scrollHeight - chatbox.scrollTop;
-  var prevHeight = chatbox.scrollHeight;
-  var factorTop = (chatbox.scrollHeight - prevHeight); // keeps the scrolling still if they are not at the bottom
+  let prevTop = chatbox.scrollHeight - chatbox.scrollTop;
+  const prevHeight = chatbox.scrollHeight;
+  const factorTop = (chatbox.scrollHeight - prevHeight); // keeps the scrolling still if they are not at the bottom
 
   if (chatbox.scrollTop === chatbox.scrollHeight - chatbox.offsetHeight) {
     prevTop -= prevTop;

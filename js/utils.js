@@ -4,7 +4,7 @@ utils.js -
   that would potentially become repetitive as it is used multiple times.
 */
 
-var debug = true;
+const debug = true;
 
 function debugMe(msg) {
   if (debug) {
@@ -15,8 +15,8 @@ function debugMe(msg) {
 // Grabs the contents of the body.
 // Mainly used for getting the innerHTML of the body of external pages.
 function getContent(content) {
-  var x = content.indexOf("<body");
+  let x = content.indexOf("<body");
   x = content.indexOf(">", x);
-  var y = content.lastIndexOf("</body>");
+  let y = content.lastIndexOf("</body>");
   return content.slice(x + 1, y);
 }

@@ -5,7 +5,7 @@ auth.js -
   and not the consumers.
 */
 
-var oauthConfig = {
+let oauthConfig = {
   clientID: 'de84rjd2hrql8kw0q1d0r7mw51moyid',
   redirectURI: 'http://127.0.0.1:3000', //For testing on a private server. Feel free to change.
   scope: ['chat_login', 'user_read']
